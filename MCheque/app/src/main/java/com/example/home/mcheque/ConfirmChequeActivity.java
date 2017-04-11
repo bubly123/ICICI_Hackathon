@@ -127,7 +127,7 @@ public class ConfirmChequeActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
-                        Log.i("BILL_PAYMENT", "Biller mapped!");
+                        Log.i("BILL_PAYMENT", "Biller payment done!");
                     }
                 }
                 @Override
@@ -143,27 +143,26 @@ public class ConfirmChequeActivity extends AppCompatActivity {
 
     private void schedulePay() {
         if(InternetConnectivityUtility.isNetworkAvailable(this)) {
-            Call<ResponseBody> call = mapBillerInterface.getBillerMapped("https://biller.mybluemix.net/biller/icicibank/addbiller",
+            Call<ResponseBody> call = billPaymentInterface.setBillPayment("https://biller.mybluemix.net/biller/icicibank/schedulePay",
                     "mayuriardad@gmail.com",
                     ((MyApplication)getApplicationContext()).getAuthToken(),
-                    "Tata Power",
-                    "gujarat",
                     ((MyApplication)getApplicationContext()).payeeList.get(position).getCustomerId(),
                     ((MyApplication)getApplicationContext()).payeeList.get(position).getPayeeShortName(),
-                    tvConfirmAmt.getText().toString()
-            );
+                    79202021112,
+                    Integer.parseInt(tvConfirmDate.getText().toString().substring(0,2)),
+                    "Y",
+                    Integer.parseInt(tvConfirmAmt.getText().toString()));
+
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
-                        Log.i("MAP_BILLER", "Biller mapped!");
-//                        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-//                        startActivity(intent);
+                        Log.i("SCHEDULE_PAY", "Biller mapped!");
                     }
                 }
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.i("MAP_BILLER", "failed.");
+                    Log.i("SCHEDULE_PAY", "failed.");
                 }
             });
         } else {
