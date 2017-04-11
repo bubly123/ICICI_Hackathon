@@ -5,24 +5,29 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class CreateChequeActivity extends AppCompatActivity {
     EditText editTextDate,editTextAmt;
     Calendar myCalendar;
     TextView tvName,tvAccountNo;
+    int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_cheque);
+        setTitle("Create Cheque");
         Intent intent = getIntent();
-        int position = intent.getIntExtra("position", 0);
+        position = intent.getIntExtra("position", 0);
 
         mapIds();
 
@@ -31,6 +36,31 @@ public class CreateChequeActivity extends AppCompatActivity {
 
         createDatePickerDialog();
 
+        Button buttonContinue = (Button)findViewById(R.id.buttonContinue);
+        buttonContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validate() == true) {
+                    Intent intent = new Intent(CreateChequeActivity.this,ConfirmChequeActivity.class);
+                    intent.putExtra("positionOfPayee",position);
+                    intent.putExtra("amount",editTextAmt.getText().toString().trim());
+                    intent.putExtra("date",editTextDate.getText().toString());
+                    startActivity(intent);
+                }
+            }
+        });
+
+    }
+
+    private boolean validate() {
+        if(editTextAmt.getText().toString().trim().equals("")) {
+            Toast.makeText(this,"Please enter amount!",Toast.LENGTH_LONG).show();
+            return false;
+        } else if(editTextDate.getText().toString().trim().equals("")) {
+            Toast.makeText(this,"Please enter the date!",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
     private void createDatePickerDialog() {
@@ -55,9 +85,13 @@ public class CreateChequeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(CreateChequeActivity.this, date, myCalendar
+                DatePickerDialog dialog = new DatePickerDialog(CreateChequeActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                long now = System.currentTimeMillis() - 1000;
+                dialog.getDatePicker().setMinDate(now);
+                dialog.getDatePicker().setMaxDate(now+(1000*60*60*24*15));
+                dialog.show();
             }
         });
     }

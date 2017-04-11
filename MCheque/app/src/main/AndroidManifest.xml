@@ -29,7 +29,10 @@
         <activity
             android:name=".PayeeListActivity"
             android:parentActivityName=".homePage.HomePageActivity" />
-        <activity android:name=".CreateChequeActivity"></activity>
+        <activity android:name=".CreateChequeActivity"
+            android:parentActivityName=".PayeeListActivity"/>
+        <activity android:name=".ConfirmChequeActivity"
+            android:parentActivityName= ".CreateChequeActivity"/>
     </application>
 
 </manifest>
