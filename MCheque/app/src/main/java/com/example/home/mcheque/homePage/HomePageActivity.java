@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.home.mcheque.AccountSummaryActivity;
 import com.example.home.mcheque.ChequeHistoryActivity;
 import com.example.home.mcheque.LoginActivity;
 import com.example.home.mcheque.MyApplication;
@@ -42,7 +43,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageActivity extends AppCompatActivity {
-    CardView cardViewCreate, cardViewHistory;
+    CardView cardViewCreate, cardViewHistory, cardViewSummary;
     private ParticipantDataMappingInterface participantDataMappingInterface;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -72,6 +73,15 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePageActivity.this, ChequeHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardViewSummary = (CardView)findViewById(R.id.cardViewReceive);
+        cardViewSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this, AccountSummaryActivity.class);
                 startActivity(intent);
             }
         });

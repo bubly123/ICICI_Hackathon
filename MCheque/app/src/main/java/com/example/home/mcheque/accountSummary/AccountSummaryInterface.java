@@ -17,7 +17,7 @@ public interface AccountSummaryInterface {
     @GET
 //    https://retailbanking.mybluemix.net/banking/icicibank/balanceenquiry?client_id=mayuriardad@gmail.com&token=861b78709e94&accountno=4444777755552213
 
-    Call<List<Accounts>> getAccountSummary(@Url String url,
+    Call<List<AccountSummary>> getAccountSummary(@Url String url,
                                            @Query("client_id") String clientId,
                                            @Query("token") String token,
                                            @Query("accountno") String accountNo);
