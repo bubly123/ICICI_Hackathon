@@ -3,6 +3,7 @@ package com.example.home.mcheque;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -31,6 +32,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.home.mcheque.homePage.HomePageActivity;
 import com.example.home.mcheque.login.LoginWebServiceCall;
 import com.example.home.mcheque.login.User;
 import com.example.home.mcheque.login.UserAuthenticationInterface;
@@ -159,6 +161,8 @@ public class LoginActivity extends AppCompatActivity  {
                             List<User> users = response.body();
                             ((MyApplication)getApplicationContext()).setAuthToken(users.get(0).getToken());
                             Log.i("AUTH_TOKEN", "post submitted to API."+ users.get(0).getToken());
+                            Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                            startActivity(intent);
                         }
                     }
                     @Override
@@ -167,6 +171,7 @@ public class LoginActivity extends AppCompatActivity  {
                     }
                 });
             } else {
+                Log.i("NO_INTERNET", "No internet available");
                 Toast.makeText(this,"No Internet available",2);
             }
         }
