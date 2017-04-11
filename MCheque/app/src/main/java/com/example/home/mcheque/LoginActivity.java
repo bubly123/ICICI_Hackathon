@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity  {
                 });
             } else {
                 Log.i("NO_INTERNET", "No internet available");
-                Toast.makeText(this,"No Internet available",2);
+                Toast.makeText(this,"No Internet available",Toast.LENGTH_LONG).show();
             }
         }
     }

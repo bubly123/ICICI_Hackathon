@@ -49,7 +49,6 @@ public class CreateChequeActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private boolean validate() {

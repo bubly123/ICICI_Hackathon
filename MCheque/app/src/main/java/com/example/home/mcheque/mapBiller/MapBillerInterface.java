@@ -18,7 +18,7 @@ public interface MapBillerInterface {
     //https://biller.mybluemix.net/biller/icicibank/addbiller?client_id=mayuriardad@gmail.com&token=
     // ace6de86db04&billerdetail=Tata Power&state=gujarat&custid=33337213&nickname=A2214&consumerno=79202021112
     @GET
-    Call<ResponseBody> getParticpantMappingData(@Url String url,
+    Call<ResponseBody> getBillerMapped(@Url String url,
                                                 @Query("client_id") String clientId,
                                                 @Query("token") String token,
                                                 @Query("billerdetail") String billerDetail,
