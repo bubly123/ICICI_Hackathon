@@ -1,3 +1,4 @@
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,13 +11,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.home.mcheque.LoginActivity">
 
-        <LinearLayout
-            android:id="@+id/payee_list_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
 
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/my_recycler_view"
+    android:scrollbars="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+<!--
             <Button
                 android:id="@+id/list_payee_button"
                 style="?android:textAppearanceSmall"
@@ -24,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="List Payee"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
         </LinearLayout>
-    </LinearLayout>
+
