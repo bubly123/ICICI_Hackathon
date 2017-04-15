@@ -99,7 +99,7 @@ public class HomePageActivity extends AppCompatActivity {
                         ((MyApplication)getApplicationContext()).customerDetails.add(customerDetailTwo);
                         ((MyApplication)getApplicationContext()).customerDetails.add(customerDetailThree);
                         ((MyApplication)getApplicationContext()).customerDetails.add(customerDetailFour);
-                        //Log.i("JSON", new Gson().toJson(response.body().toString()));
+                        Log.i("PRINT","account "+ ((MyApplication)getApplicationContext()).customerDetails.get(0).getAccountNo());
                     }
                     else {
                         Log.i("ACC_NO","success code is not 200 " +response.errorBody());
