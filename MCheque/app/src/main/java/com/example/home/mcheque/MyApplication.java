@@ -3,6 +3,7 @@ package com.example.home.mcheque;
 import android.app.Application;
 
 
+import com.example.home.mcheque.billerList.Biller;
 import com.example.home.mcheque.payeeList.Payee;
 import com.example.home.mcheque.participantDataMapping.CustomerDetails;
 
@@ -12,6 +13,7 @@ public class MyApplication extends Application{
     private String authToken = "";
     public List<Payee> payeeList;
     public List<CustomerDetails> customerDetails;
+    public List<Biller> billerList;
 
     public String getAuthToken() {
         return authToken;
