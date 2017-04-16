@@ -40,8 +40,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
-                    android:text="mayuriardad@gmail.com"
                     android:maxLines="1"
+                    android:text="mayuriardad@gmail.com"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>

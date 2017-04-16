@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.home.mcheque.LoginActivity;
 import com.example.home.mcheque.MyApplication;
+import com.example.home.mcheque.PayeeListActivity;
 import com.example.home.mcheque.R;
 import com.example.home.mcheque.login.User;
 import com.example.home.mcheque.participantDataMapping.Accounts;
@@ -99,6 +100,8 @@ public class HomePageActivity extends AppCompatActivity {
                         ((MyApplication)getApplicationContext()).customerDetails.add(customerDetailTwo);
                         ((MyApplication)getApplicationContext()).customerDetails.add(customerDetailThree);
                         ((MyApplication)getApplicationContext()).customerDetails.add(customerDetailFour);
+                        Intent intent = new Intent(HomePageActivity.this, PayeeListActivity.class);
+                        startActivity(intent);
                         Log.i("PRINT","account "+ ((MyApplication)getApplicationContext()).customerDetails.get(0).getAccountNo());
                     }
                     else {
