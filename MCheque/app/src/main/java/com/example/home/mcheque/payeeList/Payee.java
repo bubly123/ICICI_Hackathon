@@ -19,15 +19,6 @@ public class Payee {
         this.code = code;
     }
 
-    @SerializedName("token")
-    @Expose
-    private String token;
-    public String getToken() {
-        return token;
-    }
-    public void setToken(String token) {
-        this.token = token;
-    }
 
     @SerializedName("creationdate")
     @Expose
@@ -41,15 +32,15 @@ public class Payee {
 
     @SerializedName("custid")
     @Expose
-    private String custid;
+    private String custId;
     public String getCustomerId() {
-        return custid;
+        return custId;
     }
-    public void setCustomerId(String custid) {
-        this.custid = custid;
+    public void setCustomerId(String custId) {
+        this.custId = custId;
     }
 
-    @SerializedName("payeeId")
+    @SerializedName("payeeid")
     @Expose
     private String payeeId;
     public String getPayeeId() {
@@ -59,7 +50,7 @@ public class Payee {
         this.payeeId = payeeId;
     }
 
-    @SerializedName("payeeName")
+    @SerializedName("payeename")
     @Expose
     private String payeeName;
     public String getPayeeName() {
@@ -69,7 +60,7 @@ public class Payee {
         this.payeeName = payeeName;
     }
 
-    @SerializedName("payeeAccountNo")
+    @SerializedName("payeeaccountno")
     @Expose
     private String payeeAccountNo;
     public String getPayeeAccountNo() {
@@ -79,13 +70,23 @@ public class Payee {
         this.payeeAccountNo = payeeAccountNo;
     }
 
-    @SerializedName("payeeShortName")
+    @SerializedName("shortname")
     @Expose
     private String payeeShortName;
     public String getPayeeShortName() {
         return payeeShortName;
     }
     public void setPayeeShortName(String payeeShortName) {
+        this.payeeShortName = payeeShortName;
+    }
+
+    public Payee(){}
+
+    public Payee(String custId, String payeeId, String payeeAccountNo, String payeeName, String payeeShortName){
+        this.custId = custId;
+        this.payeeId = payeeId;
+        this.payeeAccountNo = payeeAccountNo;
+        this.payeeName = payeeName;
         this.payeeShortName = payeeShortName;
     }
 }

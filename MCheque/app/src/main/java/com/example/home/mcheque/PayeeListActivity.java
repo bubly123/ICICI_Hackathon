@@ -43,20 +43,44 @@ public class PayeeListActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(myDataset);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         listPayees();
     }
     private void listPayees(){
         if(InternetConnectivityUtility.isNetworkAvailable(this)) {
-            Call<List<Payee>> call = mPayeeListInterface.getPayeeList("icicibank/listpayee","mayuriardad@gmail.com",((MyApplication)getApplicationContext()).getAuthToken(), "33337213");
+            Call<List<Payee>> call = mPayeeListInterface.getPayeeList("https://retailbanking.mybluemix.net/banking/icicibank/listpayee",
+                    "mayuriardad@gmail.com",((MyApplication)getApplicationContext()).getAuthToken(), "33337213");
             call.enqueue(new Callback<List<Payee>>() {
                 @Override
                 public void onResponse(Call<List<Payee>> call, Response<List<Payee>> response) {
                     if (response.isSuccessful()) {
                         List<Payee> payees = response.body();
 
+                        Payee payeeOne = new Payee(
+                                response.body().get(1).getCustomerId(),
+                                response.body().get(1).getPayeeId(),
+                                response.body().get(1).getPayeeAccountNo(),
+                                response.body().get(1).getPayeeName(),
+                                response.body().get(1).getPayeeShortName());
+                        Payee payeeTwo = new Payee(
+                                response.body().get(2).getCustomerId(),
+                                response.body().get(2).getPayeeId(),
+                                response.body().get(2).getPayeeAccountNo(),
+                                response.body().get(2).getPayeeName(),
+                                response.body().get(2).getPayeeShortName());
+                        Payee payeeThree = new Payee(
+                                response.body().get(3).getCustomerId(),
+                                response.body().get(3).getPayeeId(),
+                                response.body().get(3).getPayeeAccountNo(),
+                                response.body().get(3).getPayeeName(),
+                                response.body().get(3).getPayeeShortName());
+                        ((MyApplication)getApplicationContext()).payeeList = new ArrayList<Payee>();
+                        ((MyApplication)getApplicationContext()).payeeList.add(payeeOne);
+                        ((MyApplication)getApplicationContext()).payeeList.add(payeeTwo);
+                        ((MyApplication)getApplicationContext()).payeeList.add(payeeThree);
+                        Log.i("PRINT","account "+ ((MyApplication)getApplicationContext()).payeeList.get(0).getPayeeShortName());
                         //((MyApplication)getApplicationContext()).setAuthToken(payees.get(1).getToken());
                         Log.i("payee name", "payee name."+ payees.get(1).getPayeeName());
                         //Intent intent = new Intent(PayeeListActivity.this, HomePageActivity.class);
