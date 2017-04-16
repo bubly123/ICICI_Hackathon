@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageActivity extends AppCompatActivity {
-    Button buttonSendCheque;
+    CardView cardViewCreate;
     private ParticipantDataMappingInterface participantDataMappingInterface;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -52,10 +53,10 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-        buttonSendCheque = (Button) findViewById(R.id.buttonSendCheque);
+        setTitle("ICICI Bank");
+        cardViewCreate = (CardView) findViewById(R.id.cardViewCreate);
         participantDataMappingInterface = ParticipantDataMappingWebService.getParticipantDataMapped();
-        buttonSendCheque.setOnClickListener(new View.OnClickListener() {
+        cardViewCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
