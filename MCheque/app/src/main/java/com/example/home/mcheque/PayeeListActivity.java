@@ -33,20 +33,18 @@ public class PayeeListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Payee List");
         setContentView(R.layout.activity_payee_list);
         //https://retailbanking.mybluemix.net/banking/icicibank/listpayee?client_id=mayuriardad@gmail.com&token=f013e6f28854&custid=33337213
         // Button mListPayeeButton = (Button) findViewById(R.id.list_payee_button);
         mPayeeListInterface = PayeeListWebService.getPayeeListService();
-        List<String> myDataset = new ArrayList<String>();
-        myDataset.add("mayuri");
-        myDataset.add("komal");
-        mAdapter = new MyAdapter(myDataset);
+        //List<String> myDataset = new ArrayList<String>();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
         listPayees();
+//        myDataset.add("mayuri");
+//        myDataset.add("komal");
+
+
     }
     private void listPayees(){
         if(InternetConnectivityUtility.isNetworkAvailable(this)) {
@@ -85,6 +83,12 @@ public class PayeeListActivity extends AppCompatActivity {
                         Log.i("payee name", "payee name."+ payees.get(1).getPayeeName());
                         //Intent intent = new Intent(PayeeListActivity.this, HomePageActivity.class);
                         //startActivity(intent);
+                        mAdapter = new MyAdapter(((MyApplication)getApplicationContext()).payeeList);
+
+                        mRecyclerView.setHasFixedSize(true);
+                        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        mRecyclerView.setLayoutManager(mLayoutManager);
+                        mRecyclerView.setAdapter(mAdapter);
                     }
                 }
 
