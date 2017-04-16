@@ -10,6 +10,7 @@ import retrofit2.http.Query;
 
 public interface UserAuthenticationInterface {
     @GET("mybank/authenticate_client")
+            //https://corporateapiprojectwar.mybluemix.net/corporate_banking/mybank/authenticate_client
 //    @FormUrlEncoded
     Call <List<User>> getAuthToken(@Query("client_id") String clientId,
                              @Query("password") String password);
