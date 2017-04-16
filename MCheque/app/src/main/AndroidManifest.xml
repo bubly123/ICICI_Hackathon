@@ -25,11 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".homePage.HomePageActivity"
-            />
-        <activity android:name=".PayeeListActivity"
-            android:parentActivityName=".homePage.HomePageActivity"
-        />
+        <activity android:name=".homePage.HomePageActivity" />
+        <activity
+            android:name=".PayeeListActivity"
+            android:parentActivityName=".homePage.HomePageActivity" />
+        <activity android:name=".CreateChequeActivity"></activity>
     </application>
 
 </manifest>

@@ -15,6 +15,7 @@ import com.example.home.mcheque.login.User;
 import com.example.home.mcheque.payeeList.Payee;
 import com.example.home.mcheque.payeeList.PayeeListInterface;
 import com.example.home.mcheque.payeeList.PayeeListWebService;
+import com.example.home.mcheque.payeeList.RecyclerItemClickListener;
 import com.example.home.mcheque.utility.InternetConnectivityUtility;
 
 import java.util.ArrayList;
@@ -35,15 +36,24 @@ public class PayeeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Payee List");
         setContentView(R.layout.activity_payee_list);
-        //https://retailbanking.mybluemix.net/banking/icicibank/listpayee?client_id=mayuriardad@gmail.com&token=f013e6f28854&custid=33337213
-        // Button mListPayeeButton = (Button) findViewById(R.id.list_payee_button);
-        mPayeeListInterface = PayeeListWebService.getPayeeListService();
-        //List<String> myDataset = new ArrayList<String>();
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        listPayees();
-//        myDataset.add("mayuri");
-//        myDataset.add("komal");
 
+        mPayeeListInterface = PayeeListWebService.getPayeeListService();
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, mRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        Intent intent = new Intent(PayeeListActivity.this,CreateChequeActivity.class);
+                        intent.putExtra("position",position);
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
+        listPayees();
 
     }
     private void listPayees(){
