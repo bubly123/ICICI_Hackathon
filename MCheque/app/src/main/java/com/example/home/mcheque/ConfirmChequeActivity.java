@@ -34,6 +34,7 @@ public class ConfirmChequeActivity extends AppCompatActivity {
     MapBillerInterface mapBillerInterface;
     BillPaymentInterface billPaymentInterface;
     SchedulePayInterface schedulePayInterface;
+    int amt;
     int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class ConfirmChequeActivity extends AppCompatActivity {
 
     private void setData() {
         Intent intent = getIntent();
+        amt = Integer.parseInt(intent.getStringExtra("amount"));
         position = intent.getIntExtra("positionOfPayee",0);
         tvConfirmAccNo.setText(((MyApplication)getApplicationContext()).payeeList.get(position).getPayeeAccountNo());
         tvConfirmName.setText(((MyApplication)getApplicationContext()).payeeList.get(position).getPayeeShortName());
@@ -121,13 +123,16 @@ public class ConfirmChequeActivity extends AppCompatActivity {
                     ((MyApplication)getApplicationContext()).getAuthToken(),
                     ((MyApplication)getApplicationContext()).payeeList.get(position).getCustomerId(),
                     ((MyApplication)getApplicationContext()).payeeList.get(position).getPayeeShortName(),
-                    Integer.parseInt(tvConfirmAmt.getText().toString()));
+                    amt);
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
                         Log.i("BILL_PAYMENT", "Biller payment done!");
+                        Intent intent = new Intent(ConfirmChequeActivity.this, InvoiceActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
                 }
                 @Override
@@ -143,21 +148,24 @@ public class ConfirmChequeActivity extends AppCompatActivity {
 
     private void schedulePay() {
         if(InternetConnectivityUtility.isNetworkAvailable(this)) {
-            Call<ResponseBody> call = billPaymentInterface.setBillPayment("https://biller.mybluemix.net/biller/icicibank/schedulePay",
+            Call<ResponseBody> call = schedulePayInterface.setSchedulePay("https://biller.mybluemix.net/biller/icicibank/schedulePay",
                     "mayuriardad@gmail.com",
                     ((MyApplication)getApplicationContext()).getAuthToken(),
                     ((MyApplication)getApplicationContext()).payeeList.get(position).getCustomerId(),
                     ((MyApplication)getApplicationContext()).payeeList.get(position).getPayeeShortName(),
-                    79202021112,
+                    "79202021112",
                     Integer.parseInt(tvConfirmDate.getText().toString().substring(0,2)),
                     "Y",
-                    Integer.parseInt(tvConfirmAmt.getText().toString()));
+                    amt);
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
-                        Log.i("SCHEDULE_PAY", "Biller mapped!");
+                        Log.i("SCHEDULE_PAY", "Schedule pay!");
+                        Intent intent = new Intent(ConfirmChequeActivity.this, InvoiceActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
                 }
                 @Override

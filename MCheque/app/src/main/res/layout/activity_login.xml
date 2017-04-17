@@ -33,20 +33,22 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel"
+                android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="60dp"
                     android:hint="@string/prompt_email"
-                    android:background="@drawable/border"
                     android:gravity="center_vertical"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:text="mayuriardad@gmail.com"
-                    android:singleLine="true" />
+                    android:textColorHint="#dddddd"
+                    android:textCursorDrawable="@drawable/edittext_cursor_color"
+                    android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -55,21 +57,22 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
+                android:theme="@style/TextLabel"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="60dp"
                     android:hint="@string/prompt_password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:text="3E7DEVU3"
-                    android:background="@drawable/border"
                     android:gravity="center_vertical"
+                    android:textColorHint="#dddddd"
+                    android:textCursorDrawable="@drawable/edittext_cursor_color"
                     android:maxLines="1"
                     android:singleLine="true" />
 

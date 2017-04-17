@@ -162,6 +162,7 @@ public class LoginActivity extends AppCompatActivity  {
                             ((MyApplication)getApplicationContext()).setAuthToken(users.get(0).getToken());
                             Log.i("AUTH_TOKEN", "post submitted to API."+ users.get(0).getToken());
                             Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }
                     }

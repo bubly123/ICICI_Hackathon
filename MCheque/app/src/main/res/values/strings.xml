@@ -19,4 +19,5 @@
     <string name="amt"><b>Amount</b></string>
     <string name="confirm"><b>Confirm</b></string>
     <string name="rupee">\u20B9</string>
+    <string name="invoice_message"><b>Congratulations!</b>\nYou have successfully created mCheque!</string>
 </resources>
