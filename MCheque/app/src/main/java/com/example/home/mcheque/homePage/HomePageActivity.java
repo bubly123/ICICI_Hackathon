@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.home.mcheque.ChequeHistoryActivity;
 import com.example.home.mcheque.LoginActivity;
 import com.example.home.mcheque.MyApplication;
 import com.example.home.mcheque.PayeeListActivity;
@@ -41,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageActivity extends AppCompatActivity {
-    CardView cardViewCreate;
+    CardView cardViewCreate, cardViewHistory;
     private ParticipantDataMappingInterface participantDataMappingInterface;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -64,6 +65,14 @@ public class HomePageActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        cardViewHistory = (CardView) findViewById(R.id.cardViewSend);
+        cardViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this, ChequeHistoryActivity.class);
+                startActivity(intent);
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.

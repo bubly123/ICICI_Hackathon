@@ -64,7 +64,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="3"
                     android:layout_height="match_parent"
-                    android:text="Sent Cheques"
+                    android:text="Cheque History"
                     android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:textColor="@color/colorLightGray"
@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="3"
                     android:layout_height="match_parent"
-                    android:text="Received Cheques"
+                    android:text="Account Summary"
                     android:textSize="18sp"
                     android:textColor="@color/colorLightGray"
 

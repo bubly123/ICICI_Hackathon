@@ -43,6 +43,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:text="mayuriardad@gmail.com"
                     android:hint="@string/prompt_email"
                     android:gravity="center_vertical"
                     android:inputType="textEmailAddress"
@@ -64,6 +65,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
+                    android:text="3E7DEVU3"
                     android:layout_height="60dp"
                     android:hint="@string/prompt_password"
                     android:imeActionId="@+id/login"
